@@ -270,15 +270,28 @@ public class ScheduledTasks {
 									currentIdleTime = cir.getNightIdleTime();
 								}
 							}
-							if ((idlTm > currentIdleTime) && (idlTm > 30) && (!cir.getIsMondayIgnore())) {
-								// sendIdleTimeSMS(api, imd, idlTm, "L1");
-								emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L1");
-							} else if ((idlTm > currentIdleTime) && (idlTm > 40) && (!cir.getIsMondayIgnore())) {
-								// sendIdleTimeSMS(api, imd, idlTm, "L2");
-								emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L2");
-							} else if ((idlTm > currentIdleTime) && (idlTm > 50) && (!cir.getIsMondayIgnore())) {
-								// sendIdleTimeSMS(api, imd, idlTm, "L3");
-								emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L3");
+							if (dayOfWeek == DayOfWeek.MONDAY) {
+								if ((idlTm > currentIdleTime) && (idlTm > 30) && (!cir.getIsMondayIgnore())) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L1");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L1");
+								} else if ((idlTm > currentIdleTime) && (idlTm > 40) && (!cir.getIsMondayIgnore())) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L2");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L2");
+								} else if ((idlTm > currentIdleTime) && (idlTm > 50) && (!cir.getIsMondayIgnore())) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L3");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L3");
+								}
+							} else {
+								if ((idlTm > currentIdleTime) && (idlTm > 30)) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L1");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L1");
+								} else if ((idlTm > currentIdleTime) && (idlTm > 40)) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L2");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L2");
+								} else if ((idlTm > currentIdleTime) && (idlTm > 50)) {
+									// sendIdleTimeSMS(api, imd, idlTm, "L3");
+									emailUtil.sendCritcalEmailAlerts(imd, idlTm, "L3");
+								}
 							}
 						}
 					}
